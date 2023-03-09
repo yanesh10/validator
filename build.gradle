@@ -1,0 +1,41 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.4'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+ext {
+	karateJunitVersion = '1.3.1'
+	karateApacheVersion = '0.9.6'
+}
+
+group = 'mu.yanesh.testing.rest'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation "com.intuit.karate:karate-apache:${karateApacheVersion}"
+	testImplementation "com.intuit.karate:karate-junit5:${karateJunitVersion}"
+}
+
+sourceSets {
+	test {
+		resources {
+			srcDir file('file/test/java')
+			exclude '**/*.java'
+		}
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+	systemProperty "karate.options", System.properties.getProperty("karate.options")
+	systemProperty "karate.env", System.properties.getProperty("karate.env")
+	outputs.upToDateWhen {false}
+}
