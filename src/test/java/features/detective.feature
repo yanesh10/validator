@@ -68,3 +68,6 @@ Feature: Testing for Detective's endpoint
   When method DELETE
   Then status 200
   And match response == 'true'
+  Given path uri, newDetectiveId
+  When method GET
+  Then status 404
