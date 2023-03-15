@@ -1,8 +1,10 @@
 import com.intuit.karate.junit5.Karate;
 
-class KarateRunner {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class KarateRunnerTest {
 	@Karate.Test
-	Karate testAll() {
+	Karate testAllDetective() {
 		return Karate.run("classpath:features/detective.feature");
 	}
 }
