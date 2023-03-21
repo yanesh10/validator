@@ -15,7 +15,13 @@ Feature: Test the detective soap endpoint
     And match / == read('responses/get_response_detective.xml')
 
   Scenario: Test soap request to save and delete detective
-    When request read('/requests/save_request_detective.xml')
+    When def saveRequest = read('/requests/save_request_detective.xml')
+    And replace saveRequest
+      | token         | value   |
+      | @@firstname@@ | 'Mickey'  |
+      | @@lastname@@  | 'Mouse'   |
+      | @@rank@@      | 'OFFICER' |
+    When request saveRequest
     And soap action 'SaveDetective'
     Then status 200
     And match /Envelope/Body/detectiveServiceResponse/detective/id == '#string'
@@ -33,8 +39,8 @@ Feature: Test the detective soap endpoint
     Then status 202
     When def get_request = read('/requests/get_request_detective.xml')
     And replace get_request
-      | token  | value |
-      | @@id@@ | detectiveId     |
+      | token  | value       |
+      | @@id@@ | detectiveId |
     And request get_request
     And soap action 'GetDetective'
     Then status 404
