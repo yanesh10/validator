@@ -1,0 +1,14 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:detectiveServiceResponse xmlns:ns2="http://spring.io/guides/gs-producing-web-service">
+            <ns2:detective>
+                <ns2:id>1</ns2:id>
+                <ns2:version>0</ns2:version>
+                <ns2:firstName>John</ns2:firstName>
+                <ns2:lastName>David</ns2:lastName>
+                <ns2:rank>SERGEANT</ns2:rank>
+            </ns2:detective>
+        </ns2:detectiveServiceResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
