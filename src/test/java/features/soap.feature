@@ -43,6 +43,6 @@ Feature: Test the detective soap endpoint
       | @@id@@ | detectiveId |
     And request get_request
     And soap action 'GetDetective'
-    Then status 404
+    Then status 500
     And match /Envelope/Body/Fault == '#notnull'
     And match /Envelope/Body/Fault/faultstring contains 'DetectiveNotFoundException'
